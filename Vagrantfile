@@ -21,17 +21,23 @@ Vagrant.configure("2") do |config|
                     :type => "bridge"
     
     main.vm.provider :libvirt do |libvirt|
-      libvirt.driver = 'kvm'
-      libvirt.cpu_mode = 'host-model'
-      libvirt.title = title
-      libvirt.memory = 2048
+      libvirt.memory = 1024
       libvirt.cpus = 2
+      libvirt.cpu_mode = "custom"
+      libvirt.cpu_model = "n270"
+      libvirt.cputopology sockets: "1", cores: "1", threads: "2"
+      libvirt.nested = false
+      libvirt.machine_arch = "i686"
+      libvirt.title = title
       libvirt.machine_type = 'pc-i440fx-5.2'
-      libvirt.boot 'hd'
+      libvirt.boot 'cdrom'
+      
+      # Network
+      libvirt.nic_model_type = "e1000"
       
       # USB
-      libvirt.usb_controller :model => 'qemu-xhci'
-      libvirt.usb :vendor => '0x174c', :product => '0x1153', :startupPolicy => 'mandatory'
+      # libvirt.usb_controller :model => 'qemu-xhci'
+      # libvirt.usb :vendor => '0x174c', :product => '0x1153', :startupPolicy => 'mandatory'
       
       # Configurazione grafica
       libvirt.graphics_type = 'spice'
@@ -40,6 +46,11 @@ Vagrant.configure("2") do |config|
       libvirt.video_accel3d = false
       libvirt.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
       libvirt.channel :type => 'spicevmc', :target_name => 'com.redhat.spice.0', :target_type => 'virtio'
+
+      libvirt.storage :file, 
+                      :device => :cdrom, 
+                      :bus => 'ide',
+                      :path => '/media/tera/zakcloud/isoz/Debian/debian-31r0a-i386-businesscard.iso'
     end
   end
 end
