@@ -35,22 +35,13 @@ Vagrant.configure("2") do |config|
       # Network
       libvirt.nic_model_type = "e1000"
       
-      # USB
-      # libvirt.usb_controller :model => 'qemu-xhci'
-      # libvirt.usb :vendor => '0x174c', :product => '0x1153', :startupPolicy => 'mandatory'
-      
-      # Configurazione grafica
+      # Video
       libvirt.graphics_type = 'spice'
       libvirt.graphics_gl = false
       libvirt.video_type = 'virtio'
       libvirt.video_accel3d = false
       libvirt.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
       libvirt.channel :type => 'spicevmc', :target_name => 'com.redhat.spice.0', :target_type => 'virtio'
-
-      libvirt.storage :file, 
-                      :device => :cdrom, 
-                      :bus => 'ide',
-                      :path => '/media/tera/zakcloud/isoz/Debian/debian-31r0a-i386-businesscard.iso'
     end
   end
 end
