@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
       libvirt.boot 'network'
       
       # Network
+      libvirt.mgmt_attach = false
       libvirt.nic_model_type = "e1000"
       
       # Video
