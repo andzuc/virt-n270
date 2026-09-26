@@ -1,0 +1,11 @@
+#!/bin/bash
+MYDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PATH="${PATH}:${MYDIR}"
+cd "${MYDIR}/.."
+[ -f .env ]&&source .env
+set -e
+
+export VM_NAME="${VM_NAME:-virt-n270}"
+export VM_MAC="${VM_MAC:-52:54:00:02:02:02}"
+virsh define <(envsubst < virt-n270.xml.template)
+virsh start "${VM_NAME}"

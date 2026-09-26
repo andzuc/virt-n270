@@ -1,8 +1,8 @@
 <domain type='kvm' id='1'>
-  <name>virt-n270_main</name>
+  <name>${VM_NAME}</name>
   <uuid>0ec249ac-c469-4002-bebd-67e715c1dbd9</uuid>
   <title>virt-n270</title>
-  <description>Source: /opt/vbox/media/shared/dev/alpine-netboot/virt-n270/Vagrantfile</description>
+  <description>Intel D945GSEJT motherboard, Intel Atom N270 CPU</description>
   <memory unit='KiB'>1048576</memory>
   <currentMemory unit='KiB'>1048576</currentMemory>
   <vcpu placement='static'>2</vcpu>
@@ -34,19 +34,15 @@
   <on_crash>destroy</on_crash>
   <devices>
     <emulator>/usr/bin/qemu-system-i386</emulator>
+    <controller type='pci' index='0' model='pci-root'>
+      <alias name='pci.0'/>
+    </controller>
     <controller type='usb' index='0' model='piix3-uhci'>
       <alias name='usb'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x2'/>
     </controller>
-    <controller type='pci' index='0' model='pci-root'>
-      <alias name='pci.0'/>
-    </controller>
-    <controller type='virtio-serial' index='0'>
-      <alias name='virtio-serial0'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
-    </controller>
     <interface type='bridge'>
-      <mac address='52:54:00:02:02:02'/>
+      <mac address='${VM_MAC}'/>
       <source bridge='intnet'/>
       <target dev='vnet0'/>
       <model type='e1000'/>
@@ -54,6 +50,14 @@
       <alias name='ua-net-0'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x05' function='0x0'/>
     </interface>
+    <sound model='ich6'>
+      <alias name='sound0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x06' function='0x0'/>
+    </sound>
+    <controller type='virtio-serial' index='0'>
+      <alias name='virtio-serial0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
+    </controller>
     <serial type='pty'>
       <source path='/dev/pts/3'/>
       <target type='isa-serial' port='0'>
