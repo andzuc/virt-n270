@@ -1,10 +1,11 @@
-title = 'debian-testapp'
+title = "#{ENV['VM_TITLE']}"
 
 machines = {
   "main" => {
     "name" => "testapp" ,
     "ip" => "172.30.1.2",
-    "netmask" => "255.255.255.0"
+    "netmask" => "255.255.255.0",
+    "mac" => "#{ENV['PXE_MAC']}"
   }
 }
 
@@ -16,6 +17,7 @@ Vagrant.configure("2") do |config|
     main.vm.network :public_network,
                     :ip => machine["ip"],
                     :netmask => machine["netmask"],
+                    :mac => machine["mac"],
                     :dev => "intnet",
                     :mode => "bridge",
                     :type => "bridge"
