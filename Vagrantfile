@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
       libvirt.machine_arch = "i686"
       libvirt.title = title
       libvirt.machine_type = 'pc-i440fx-5.2'
-      libvirt.boot 'cdrom'
+      libvirt.boot 'network'
       
       # Network
       libvirt.nic_model_type = "e1000"
@@ -44,6 +44,11 @@ Vagrant.configure("2") do |config|
       libvirt.video_accel3d = false
       libvirt.channel :type => 'unix', :target_name => 'org.qemu.guest_agent.0', :target_type => 'virtio'
       libvirt.channel :type => 'spicevmc', :target_name => 'com.redhat.spice.0', :target_type => 'virtio'
+
+      # libvirt.storage :file, 
+      #                 :device => :cdrom, 
+      #                 :bus => 'ide',
+      #                 :path => '/opt/vbox/media/isoz/alpine-virt-3.24.2-x86.iso'
     end
   end
 end
