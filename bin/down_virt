@@ -6,5 +6,5 @@ cd "${MYDIR}/.."
 set -e
 
 export VM_NAME="${VM_NAME:-virt-n270}"
-virsh destroy "${VM_NAME}"
-virsh undefine "${VM_NAME}"
+virsh -c qemu:///system destroy "${VM_NAME}"
+virsh -c qemu:///system undefine "${VM_NAME}"
