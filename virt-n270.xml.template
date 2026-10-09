@@ -18,7 +18,7 @@
     <apic/>
     <pae/>
   </features>
-  <cpu mode='custom' match='exact' check='full'>
+  <cpu mode='custom' match='exact' check='partial'>
     <model fallback='forbid'>n270</model>
     <topology sockets='1' dies='1' cores='1' threads='2'/>
 
