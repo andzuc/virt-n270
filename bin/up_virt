@@ -5,6 +5,10 @@ cd "${MYDIR}/.."
 [ -f .env ]&&source .env
 set -e
 
+echo ">>> cat /proc/cpuinfo"
+cat /proc/cpuinfo
+echo "<<< cat /proc/cpuinfo"
+
 export VM_NAME="${VM_NAME:-virt-n270}"
 export VM_MAC="${VM_MAC:-52:54:00:02:02:02}"
 virsh -c qemu:///system define <(envsubst < virt-n270.xml.template)
