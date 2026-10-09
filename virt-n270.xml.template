@@ -18,13 +18,13 @@
     <apic/>
     <pae/>
   </features>
-  <cpu mode='custom' match='exact' check='partial'>
+  <cpu mode='custom' match='exact' check='exact'>
     <model fallback='forbid'>n270</model>
     <topology sockets='1' dies='1' cores='1' threads='2'/>
 
     <!-- Feature presenti sul vero N270 → le forziamo o le richiediamo in modo sicuro -->
     <feature policy='force' name='ss'/>
-    <feature policy='require' name='monitor'/>
+    <feature policy='force' name='monitor'/>
     <feature policy='require' name='movbe'/>
     <feature policy='require' name='lahf_lm'/>
     <feature policy='require' name='ssse3'/>
