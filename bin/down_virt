@@ -5,6 +5,7 @@ cd "${MYDIR}/.."
 [ -f .env ]&&source .env
 set -e
 
+export LIBVIRT_DEFAULT_URI="${LIBVIRT_DEFAULT_URI:-qemu:///system}"
 export VM_NAME="${VM_NAME:-virt-n270}"
-virsh -c qemu:///system destroy "${VM_NAME}"
-virsh -c qemu:///system undefine "${VM_NAME}"
+virsh destroy "${VM_NAME}"
+virsh undefine "${VM_NAME}"
