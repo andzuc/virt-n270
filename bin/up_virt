@@ -12,6 +12,6 @@ echo "<<< cat /proc/cpuinfo"
 export LIBVIRT_DEFAULT_URI="${LIBVIRT_DEFAULT_URI:-qemu:///system}"
 export VM_NAME="${VM_NAME:-virt-n270}"
 export VM_MAC="${VM_MAC:-52:54:00:02:02:02}"
-export VM_LOG="${VM_LOG:-/dev/null}"
+export VM_LOG="${VM_LOG:-/tmp/${VM_NAME}.serial0}"
 virsh define <(envsubst < virt-n270.xml.template)
 virsh start "${VM_NAME}"
