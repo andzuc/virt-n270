@@ -83,14 +83,14 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x03' function='0x0'/>
     </controller>
     <serial type='unix'>
-      <source mode='bind' path='${VM_LOG}'/>
+      <source mode='connect' path='${VM_LOG}'/>
       <target type='isa-serial' port='0'>
 	<model name='isa-serial'/>
       </target>
       <alias name='serial0'/>
     </serial>
     <console type='unix'>
-      <source mode='bind' path='${VM_LOG}'/>
+      <source mode='connect' path='${VM_LOG}'/>
       <target type='serial' port='0'/>
       <alias name='serial0'/>
     </console>
