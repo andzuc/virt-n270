@@ -86,6 +86,7 @@
       <target type='isa-serial' port='0'>
         <model name='isa-serial'/>
       </target>
+      <log file='${VM_LOG}' append='off'/>
       <alias name='serial0'/>
     </serial>
     <console type='pty' tty='/dev/pts/3'>
