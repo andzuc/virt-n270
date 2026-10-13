@@ -7,5 +7,9 @@ set -e
 
 export LIBVIRT_DEFAULT_URI="${LIBVIRT_DEFAULT_URI:-qemu:///system}"
 export VM_NAME="${VM_NAME:-virt-n270}"
-virsh destroy "${VM_NAME}"
-virsh undefine "${VM_NAME}"
+if virsh dominfo "${VM_NAME}" >/dev/null 2>&1; then
+    if [ "$(virsh domstate ${VM_NAME})" = "running" ]; then
+	virsh destroy "${VM_NAME}"
+    fi
+    virsh undefine "${VM_NAME}"
+fi
