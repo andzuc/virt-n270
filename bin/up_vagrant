@@ -5,6 +5,6 @@ cd "${MYDIR}/.."
 [ -f .env ]&&source .env
 set -e
 
-export VM_TITLE=virt-n270
-export PXE_MAC=52:54:00:02:02:02
+export VM_NAME=virt-n270
+export VM_MAC=52:54:00:02:02:02
 vagrant up

@@ -1,11 +1,11 @@
-title = "#{ENV['VM_TITLE']}"
+title = "#{ENV['VM_NAME']}"
 
 machines = {
   "main" => {
     "name" => "testapp" ,
     "ip" => "172.30.1.2",
     "netmask" => "255.255.255.0",
-    "mac" => "#{ENV['PXE_MAC']}"
+    "mac" => "#{ENV['VM_MAC']}"
   }
 }
 
